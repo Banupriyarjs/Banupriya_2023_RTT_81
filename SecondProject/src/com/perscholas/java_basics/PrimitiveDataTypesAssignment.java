@@ -60,7 +60,7 @@ public class PrimitiveDataTypesAssignment {
 		System.out.println("\nProgram 6 -Divide x/y) :");
 		int x=5;
 		int y=6;
-		int q=y/6;
+		int q=y/x;
 		System.out.println("Value of q : "+q);
 		
 		//Type mismatch:cannot convert from double to int
