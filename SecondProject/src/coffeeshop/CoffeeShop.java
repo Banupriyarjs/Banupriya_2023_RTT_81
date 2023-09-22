@@ -7,8 +7,13 @@ import java.util.Scanner;
 
 public class CoffeeShop {
 
+	// this of this as the menu the coffee shop has to offer
 	List<Product> products = new ArrayList<>();
-	// this is the class member variable to make it easier
+
+	// this is the list of items in your order
+	List<Product> order = new ArrayList<>();
+
+	// this is a class member variable to make it easier
 	Scanner input = new Scanner(System.in);
 
 	public void setupProducts() {
@@ -27,39 +32,16 @@ public class CoffeeShop {
 		cookie.setPrice(6.77);
 		products.add(cookie);
 
-		Product donut = new Product();
-		donut.setName("Donut");
-		donut.setPrice(3.50);
-		products.add(donut);
-		/*
-		 * printProduct(coffee); printProduct(tea); printProduct(cookie);
-		 */
-
-	}
-
-	public void example() {
-		double coffee = 2.99d;
-		double expresso = 4.59d;
-		double cappuccino = 5.50d;
-
-		double totalSales;
-		double subTotal;
-		// 3 Items of first product,4 items of 2nd product,2 items of third product
-		subTotal = (3 * coffee) + (4 * expresso) + (2 * cappuccino);
-
-		// totalSales= subTotal + ((subTotal*SALES_TAX)/100);
-
-		double salestax = subTotal * 0.10;
-
-		totalSales = subTotal + salestax;
-
-		DecimalFormat df = new DecimalFormat("$0.00");
-
-		System.out.println("Total Sales = " + df.format(totalSales));
+		Product sandwich = new Product();
+		sandwich.setName("Donut");
+		sandwich.setPrice(5.99);
+		products.add(sandwich);
 	}
 
 	public void printProduct(Product product) {
-		System.out.println("Product Name : " + product.getName() + "  Price : " + product.getPrice());
+		// TODO HOMEWORK : Change this print only the product name + tab + price with a
+		// $
+		System.out.println("Product name : " + product.getName() + "\tPrice : " +"$"+product.getPrice()+"\n");
 	}
 
 	public void printAllProducts() {
@@ -68,30 +50,85 @@ public class CoffeeShop {
 		}
 	}
 
-	public int userSelect() {
-		System.out.println("1. Print the menu items and prices");
-		System.out.println("2. Add an item to your order");
-		System.out.println("3. Print the items in your order.");
-		System.out.println("4. Checkout.");
+	public void printOrder() {
+		System.out.println("\n*********** Your Order ******************");
+		for (Product order : order) {
+			System.out.println("Product name : " + order.getName() + "\tPrice : " +"$"+ order.getPrice());
 
-		System.out.println("\nWhat do you want to do?");
+		}
+		System.out.println("*****************************************\n");
+	}
 
+	public void example() {
+		// the value in each product is the price
+		double coffee = 5.44d;
+		double tea = 4.33d;
+		double cookie = 6.73d;
+
+		double subTotal = 0;
+
+		// 3 items of the first product
+		subTotal = coffee * 1;
+
+		// 4 items of the 2nd product
+		subTotal = subTotal + (tea * 1);
+
+		// 2 items of the 3rd product
+		subTotal = subTotal + (cookie * 1);
+
+		DecimalFormat df = new DecimalFormat("#,##0.00");
+		System.out.println("Subtotal\t" + df.format(subTotal));
+
+		double salesTax = subTotal * 0.10;
+		System.out.println("Sales Tax\t" + df.format(salesTax));
+
+		double totalSale = subTotal + salesTax;
+		System.out.println("Total\t\t" + df.format(totalSale));
+	}
+
+	public int displayMainUserMenu() {
+		System.out.println("1) Print the menu items and prices");
+		System.out.println("2) Add an item to your order");
+		System.out.println("3) Print the itmes in your order");
+		System.out.println("4) Checkout");
+		System.out.println("5) Exit");
+
+		System.out.print("\nWhat do you want to do? ");
 		int select = input.nextInt();
+		input.nextLine();
+
 		return select;
 	}
 
-	public static void main(String[] args) {
-
-		CoffeeShop cs = new CoffeeShop();
-		cs.setupProducts();
-
-		int userSelection = cs.userSelect();
-
-		if (userSelection == 1) {
-			cs.printAllProducts();
-		} else {
-			System.out.println("User Input " + userSelection + " is unknnown.Try again");
+	public void userSelectProduct() {
+		System.out.print("Enter product name to order: ");
+		String orderSelection = input.nextLine();
+		
+		for (Product product : products) {
+			if (product.getName().equalsIgnoreCase(orderSelection)) {
+				order.add(product);
+				System.out.println("Added " + product.getName() + " to your order.");
+			}
 		}
 	}
 
+	public static void main(String[] args) {
+		CoffeeShop cf = new CoffeeShop();
+		cf.setupProducts();
+
+		while (true) {
+			int userSelection = cf.displayMainUserMenu();
+			if (userSelection == 1) {
+				cf.printAllProducts();
+			} else if (userSelection == 2) {
+				cf.userSelectProduct();
+			} else if (userSelection == 3) {
+				cf.printOrder();
+			} else if (userSelection == 5) {
+				System.exit(0);
+			} else {
+				System.out.println("User input " + userSelection + " is unknonwn.   Try again;");
+			}
+		}
+	}
 }
