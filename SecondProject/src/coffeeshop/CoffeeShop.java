@@ -15,6 +15,11 @@ public class CoffeeShop {
 
 	// this is a class member variable to make it easier
 	Scanner input = new Scanner(System.in);
+	
+	DecimalFormat df = new DecimalFormat("$0.00");
+	//DecimalFormat df = new DecimalFormat("#,##0.00");
+	
+	
 
 	public void setupProducts() {
 		Product coffee = new Product();
@@ -41,7 +46,7 @@ public class CoffeeShop {
 	public void printProduct(Product product) {
 		// TODO HOMEWORK : Change this print only the product name + tab + price with a
 		// $
-		System.out.println("Product name : " + product.getName() + "\tPrice : " +"$"+product.getPrice()+"\n");
+		System.out.println("Product name : " + product.getName() + "\tPrice : " +df.format(product.getPrice())+"\n");
 	}
 
 	public void printAllProducts() {
@@ -53,7 +58,7 @@ public class CoffeeShop {
 	public void printOrder() {
 		System.out.println("\n*********** Your Order ******************");
 		for (Product order : order) {
-			System.out.println("Product name : " + order.getName() + "\tPrice : " +"$"+ order.getPrice());
+			System.out.println("Product name : " + order.getName() + "\tPrice : " +df.format(order.getPrice()));
 
 		}
 		System.out.println("*****************************************\n");
@@ -76,8 +81,7 @@ public class CoffeeShop {
 		// 2 items of the 3rd product
 		subTotal = subTotal + (cookie * 1);
 
-		DecimalFormat df = new DecimalFormat("#,##0.00");
-		System.out.println("Subtotal\t" + df.format(subTotal));
+			System.out.println("Subtotal\t" + df.format(subTotal));
 
 		double salesTax = subTotal * 0.10;
 		System.out.println("Sales Tax\t" + df.format(salesTax));
