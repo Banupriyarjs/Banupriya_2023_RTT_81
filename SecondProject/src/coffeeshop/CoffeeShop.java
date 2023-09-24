@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class CoffeeShop {
 
 	// this of this as the menu the coffee shop has to offer
@@ -131,8 +132,9 @@ public class CoffeeShop {
 			} else if (userSelection == 5) {
 				System.exit(0);
 			} else {
-				System.out.println("User input " + userSelection + " is unknonwn.   Try again;");
+				System.out.println("User input " + userSelection + " is unknonwn.Try again;");
 			}
 		}
+		
 	}
 }
