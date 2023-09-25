@@ -27,7 +27,24 @@ public class SplitMethod {
 		{
 			System.out.println(s);
 		}
+		
+		String str="a,b,c,d,e,f,g,h";
+		
+		String[] sp=str.split(",");
+		
+		System.out.println(Arrays.toString(sp));
+		
+		for(String s:sp)
+		{
+			System.out.println(s);
+		}
 
+		
+		String name="Banupriya Rajasekeran";
+		
+		String[] n=name.split(" ");
+		
+		System.out.println(Arrays.toString(n));
 	}
 
 }

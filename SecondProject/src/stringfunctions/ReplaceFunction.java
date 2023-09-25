@@ -17,7 +17,7 @@ public class ReplaceFunction {
 		
 		String s="abc cba";
 		System.out.println(s.replace('a', 'z'));
-		
+		String s2=s.replace('a', 'z');
 		// all occurences of 'L' is replaced with 'J'
 		System.out.println("Lava".replace('L', 'J'));
 		
