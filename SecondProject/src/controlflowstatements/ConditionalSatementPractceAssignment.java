@@ -125,10 +125,10 @@ public class ConditionalSatementPractceAssignment {
 			if (income >= 0)
 				tax.calculateTax(status, income);
 			else
-				System.out.println("Negative Income Provided.Enter the Right Income");
+				System.out.println("Negative Income Provided. Please Use Correct Format When Entering Income.");
 
 		} else {
-			System.out.println("\nWrong Status.Enter the Correct Status");
+			System.out.println("\nWrong Status. Enter the Correct Status");
 		}
 
 		input.close();
