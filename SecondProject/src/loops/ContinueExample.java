@@ -7,14 +7,12 @@ public class ContinueExample {
 		while (number < 20) {
 			number++;
 			sum += number;
-			if (number >= 5) {
+			if (number > 5) {
 				continue;
 			}
-         System.out.println("Sum "+sum);
-         System.out.println("Number: " + number);
+			System.out.println("Sum " + sum);
+			System.out.println("Number: " + number);
 		}
 
-		
-		System.out.println("Sum: " + sum);
 	}
 }
