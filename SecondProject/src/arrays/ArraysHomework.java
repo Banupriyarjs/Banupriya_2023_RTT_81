@@ -36,10 +36,7 @@ public class ArraysHomework {
 		System.out.println("The postion of last null in the array is: " + lastnull);
 
 		// 2.starts final position in the array and count down to the first
-           
-		
-		
-		for(int i=stringArray.length-1;i>0;i--)
+    	for(int i=stringArray.length-1;i>0;i--)
 		{
 			System.out.println("Element in posistion["+i+"] is : "+stringArray[i]);
 		}
@@ -66,8 +63,19 @@ public class ArraysHomework {
 			}
 		}
 		
-		System.out.println("\n\n Letters that are not vowels "+nonvowel);
-		}
+		System.out.println("\n\nLetters that are not vowels "+nonvowel);
+		
 
+	   //5.write a for loop that tells me how many values are not null
+	    int notNullCount=0;
+	    
+	    for(String s:stringArray)
+	    {
+	    	if(s!=null)
+	    		notNullCount=notNullCount+1;
+	    }
+	    System.out.println("\nNumber of not null values in an array : "+notNullCount);
+	}
+	
 }
 
