@@ -17,7 +17,7 @@ public class ArraysClassAssignment {
 
 		// substring of the characters between the first and last space of the string
 		System.out.println("\n\nSubstring between the first and last space of the string: "
-				+ example.substring(firstSpacePosition, lastSpacePosition));
+				+ example.substring(firstSpacePosition+1, lastSpacePosition));
 
 		// do the same thing to find the substring of the first and last vowel of the
 		// string
@@ -44,9 +44,6 @@ public class ArraysClassAssignment {
 			}
 		}
 
-	//	System.out.println(firstVowelPosition);
-		// System.out.println(lastVowelPosition);
-		
 		
 		System.out.println("\n\nSubstring between the first and last vowel of the string: "
 				+ example.substring(firstVowelPosition, lastVowelPosition));
@@ -66,19 +63,11 @@ public class ArraysClassAssignment {
 		// using only indexOf(" ") print the substring that contains the word "is"
 		// use 2 substrings to do this.
 		
-		// https://edabit.com/challenges
-		// Change to Java / Very Easy or Easy / Strings and try to do some of them
+		String 	is=example.substring(example.indexOf(" ")+1);
+		is=is.substring(0,is.indexOf(" "));
 		
+		System.out.println("\n"+is);
 		
-	String test = "ABC DEF GHI";
-     System.out.println("Test\n\n");
-     System.out.println(test.substring(0,test.indexOf(" ")));
-     String firstString=test.substring(0,test.indexOf(" "));
-     int flen=firstString.length();
-     System.out.println(flen);
-     
-     System.out.println(test.indexOf(" ")-1);
-      System.out.println(test.substring(flen+1,test.length()-test.indexOf(" ")-1));
 	}
-
 }
+		
