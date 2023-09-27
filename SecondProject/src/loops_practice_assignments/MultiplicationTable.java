@@ -1,4 +1,4 @@
-package loops;
+package loops_practice_assignments;
 
 public class MultiplicationTable {
 

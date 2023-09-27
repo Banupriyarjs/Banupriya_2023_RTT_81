@@ -1,9 +1,10 @@
-package arrays;
+package arrays_practice_assignment;
 
 import java.util.Arrays;
 
 public class ArraysHomework {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 
 		
@@ -39,6 +40,7 @@ public class ArraysHomework {
     	for(int i=stringArray.length-1;i>0;i--)
 		{
 			System.out.println("Element in posistion["+i+"] is : "+stringArray[i]);
+			break;
 		}
 			
 	
@@ -52,6 +54,7 @@ public class ArraysHomework {
 		
 		//4. loop over the array and count the letters that are not vowels
 		String nonvowel="";
+		int nonVowelsCount=0;
 		for(String s:strSplit)
 		{
 			if(!s.equals("a")&&!s.equals("e")&&!s.equals("i")&&!s.equals("o")&&!s.equals("u"))
@@ -60,10 +63,17 @@ public class ArraysHomework {
 					nonvowel=nonvowel+s;
 				else
 					nonvowel=nonvowel+","+s;
+				nonVowelsCount++;
 			}
 		}
 		
 		System.out.println("\n\nLetters that are not vowels "+nonvowel);
+		
+		
+		System.out.println("\n\nCount of letters that are not vowels "+nonVowelsCount);
+			
+		
+		
 		
 
 	   //5.write a for loop that tells me how many values are not null

@@ -1,4 +1,4 @@
-package javaprograms;
+package operators;
 
 public class AssignmentOperatorDemo {
 
