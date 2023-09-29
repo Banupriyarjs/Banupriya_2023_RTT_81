@@ -3,7 +3,8 @@ package inheritance;
 public class Triangle extends Shape{
 	
 	private double base;
-	private double height;
+	private double side;
+	
 
 	public double getBase() {
 		return base;
@@ -13,19 +14,24 @@ public class Triangle extends Shape{
 		this.base = base;
 	}
 
-	public double getHeight() {
-		return height;
+	public double getSide() {
+		return side;
 	}
 
-	public void setHeight(double height) {
-		this.height = height;
+	public void setSide(double side) {
+		this.side = side;
+	}
+
+	
+	public void setHeight(double side) {
+		this.side = side;
 	}
     @Override
 	public double calculateArea() {
-		return 1/2*base*height;
+		return 1/2*base*side;
 	}
     @Override
    	public double calculatePerimeter() {
-   		return base+height+height;
+   		return base+side+side;
    	}
 }

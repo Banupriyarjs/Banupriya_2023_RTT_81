@@ -18,7 +18,8 @@ public class Main {
 		Triangle triangle = new Triangle();
 		triangle.setName("Triangle");
 		triangle.setBase(5);
-		triangle.setHeight(3);
+		triangle.setSide(3);
+		
 
 		List<Shape> shapes = new ArrayList<>();
 		shapes.add(rect);
