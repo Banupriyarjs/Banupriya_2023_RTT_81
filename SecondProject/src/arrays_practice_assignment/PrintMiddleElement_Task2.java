@@ -15,7 +15,7 @@ public class PrintMiddleElement_Task2 {
 		
 		if(number.length%2==0)
 		{
-			System.out.println(number[number.length/2]);
+			//System.out.println(number[number.length/2]);
 			System.out.println("Middle Number(s) : Number 1:"+number[(number.length/2)-1]+"\tNumber 2: "+number[number.length/2]);
 		}
 		else

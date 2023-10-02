@@ -119,7 +119,6 @@ public class CoffeeShop {
 
 	public static void main(String[] args) {
 		CoffeeShop cf = new CoffeeShop();
-		cf.setupProducts();
 
 		while (true) {
 			int userSelection = cf.displayMainUserMenu();

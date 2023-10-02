@@ -2,7 +2,6 @@ package stringfunctions;
 
 public class StringFunction {
 
-	@SuppressWarnings("null")
 	public static void main(String[] args) {
 		String s1="welcome";
 		String s2="Welcome";
