@@ -1,6 +1,7 @@
+package arraylistmethods_303_11_2;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
+
 
 public class RemoveElementsFromArrayList
 {
