@@ -1,4 +1,5 @@
 package exception;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GCDWithCustomException {
@@ -34,23 +35,28 @@ public class GCDWithCustomException {
 	public static int readPostiveNumber(Scanner scanner) throws NumericException {
 		int number = -1;
 		try {
-			System.out.println("Enter a number : ");
-			if (scanner.hasNextInt() == true) {
+			System.out.println("Pleae Enter a Number : ");
+			//if (scanner.hasNextInt() == true) {
 				number = scanner.nextInt();
 				if (number <= 0) {
 					throw new NumericException("\nPlease enter a postive number greater than zero");
 				}
 
-			} else {
+			/*} else {
 				throw new NumericException("\nPlease enter a numeric value greater than zero");
 
-			}
+			}*/
 
-		} catch (Exception e) {
+		} catch (NumericException e) {
 			// e.printStackTrace();;
-			System.out.println("Caught a user defined exception");
+			System.out.println("Custom Exception :");
 			System.out.println(e.getMessage());
 
+		}
+		catch(InputMismatchException e)
+		{
+			System.out.println(e.getClass().getName());
+			System.out.println("Please enter a numeric value greater than zero");
 		}
 		return number;
 	}
