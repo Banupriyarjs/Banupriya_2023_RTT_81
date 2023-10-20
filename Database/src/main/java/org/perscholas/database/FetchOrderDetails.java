@@ -61,7 +61,9 @@ public class FetchOrderDetails {
 			}
 		    System.out.println("\n Total Margin for the Entire Order :"+totalMarginOfEntireOrder);
 			
-		    System.out.println("\n Total Margin for the Entire Order :"+Math.round(totalMarginOfEntireOrder));
+		   // System.out.println("\n Total Margin for the Entire Order :"+Math.round(totalMarginOfEntireOrder));
+		    
+		    System.out.printf("\n Total Margin for the Entire Order : %.2f",totalMarginOfEntireOrder);
 		    
 		} catch (Exception e) {
 
