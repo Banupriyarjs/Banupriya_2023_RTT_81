@@ -2,13 +2,16 @@ package org.perscholas.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class FirstConnection {
-
+public class PreparedStatementDemo {
+	// 1) Expand the output inside the while loop to also print out the last name
+		// 2) Use the scanner to also ask for the last name and modify the query to searcy for
+		// firstname and lastname
 	public static void main(String[] args) throws SQLException {
 		String dburl = "jdbc:mysql://localhost:3306/classic_model";
 		String user = "banupr";
@@ -20,17 +23,28 @@ public class FirstConnection {
 			Scanner scanner= new Scanner(System.in);
 			System.out.println("Enter the first name:");
 			String firstname=scanner.nextLine();
-			//String sql = "Select * FROM employees where id = 1002;
-			String sql = "Select * FROM employees where firstname = '"+ firstname + "'";
-			//System.out.println(sql);
-			//System.exit(1); sql injection  it will add drop table statement along with select statement
-			Statement stmt = connection.createStatement();
-			ResultSet result = stmt.executeQuery(sql);
+			
+			System.out.println("Enter the last name:");
+			String lastname=scanner.nextLine();
+			
+			
+			//This is the secure way of creating a query
+			String sql = "Select * FROM employees where firstname = ? and lastname=?";
+			System.out.println(sql);
+			
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, firstname);
+			stmt.setString(2, lastname);
+			
+			ResultSet result = stmt.executeQuery();
 			while (result.next()) {
 				Integer id = result.getInt("id");
-				String name = result.getString("firstname");
+				String fname = result.getString("firstname");
+				String lname=result.getString("lastname");
 				String email = result.getString("email");
-				System.out.println(id + " | " + name + " | " + email);
+				System.out.println(id + " | " + fname + " | "+lname+" | " + email);
+				
+				
 			}
 			result.close();
 			scanner.close();
@@ -40,6 +54,7 @@ public class FirstConnection {
 			if (connection != null) {
 				connection.close();
 			}
+			
 		}
 	}
 }
