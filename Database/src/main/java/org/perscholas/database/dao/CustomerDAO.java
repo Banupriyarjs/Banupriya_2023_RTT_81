@@ -37,5 +37,15 @@ public class CustomerDAO {
 		List<Customer> result = query.getResultList();
 		return result;
 	}
+	public void save(Customer save)
+	{
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		
+		Transaction t =session.beginTransaction();
+		session.saveOrUpdate(save);
+		t.commit();
+
+	}
 
 }

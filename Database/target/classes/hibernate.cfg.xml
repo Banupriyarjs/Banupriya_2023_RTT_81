@@ -19,6 +19,6 @@
 		
 		<mapping class="org.perscholas.database.entity.Product" />
 		
-			<mapping class="org.perscholas.database.entity.OrderDetail" />
+		<mapping class="org.perscholas.database.entity.OrderDetail" />
 	</session-factory>
 </hibernate-configuration>
