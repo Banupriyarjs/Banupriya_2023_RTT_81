@@ -18,7 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="orders")
+@Table(name = "orders")
 
 public class Order {
 	@Id
@@ -26,40 +26,38 @@ public class Order {
 	@Column(name = "id")
 	private Integer id;
 
-	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<OrderDetail> orderDetails;
-	
-	//This variable becomes read only because we have set
-	//we need to do this because
-	@Column(name="customer_id",insertable=false,updatable = false)
-	private Integer  customerId;
-	
+
+	// This variable becomes read only because we have set
+	// we need to do this because
+	/*@Column(name = "customer_id", insertable = false, updatable = false)
+	private Integer customerId;*/
+
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "customer_id", nullable = false)
+	@JoinColumn(name = "customer_id", nullable = false)
 	private Customer customer;
-	
+
 	@Column(name = "order_date")
-    @Temporal(TemporalType.DATE)
-    private Date orderDate;
+	@Temporal(TemporalType.DATE)
+	private Date orderDate;
 
 	@Column(name = "required_date")
-    @Temporal(TemporalType.DATE)
-    private Date requiredDate;
-	
+	@Temporal(TemporalType.DATE)
+	private Date requiredDate;
+
 	@Column(name = "shipped_date")
-    @Temporal(TemporalType.DATE)
-    private Date shippedDate;
-	
-	@Column(name="status")
-	private String  status;
-	
-	@Column(name="comments",columnDefinition = "Text")
-	private String  comments;
-	
-	
-	//--------------Getters & Setters------------------------
-	
+	@Temporal(TemporalType.DATE)
+	private Date shippedDate;
+
+	@Column(name = "status")
+	private String status;
+
+	@Column(name = "comments", columnDefinition = "Text")
+	private String comments;
+
+	// --------------Getters & Setters------------------------
+
 	public Integer getId() {
 		return id;
 	}
@@ -68,15 +66,14 @@ public class Order {
 		this.id = id;
 	}
 
-	public Integer getCustomerId() {
+	/*public Integer getCustomerId() {
 		return customerId;
 	}
 
 	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
-	
-
+*/
 	public Date getOrderDate() {
 		return orderDate;
 	}
@@ -123,8 +120,7 @@ public class Order {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-		
-		
+
 	}
 
 	public List<OrderDetail> getOrderDetails() {
@@ -134,11 +130,5 @@ public class Order {
 	public void setOrderDetails(List<OrderDetail> orderDetails) {
 		this.orderDetails = orderDetails;
 	}
-
-
-	
-
-	
-	
 
 }

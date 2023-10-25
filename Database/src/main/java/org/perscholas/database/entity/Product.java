@@ -21,7 +21,7 @@ public class Product {
 	@Column(name = "id")
 	private Integer id;
 
-	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY,
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
 
 	private List<OrderDetail> orderdetails;
