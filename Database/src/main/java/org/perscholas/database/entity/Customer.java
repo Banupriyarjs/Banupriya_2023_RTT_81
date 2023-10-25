@@ -1,6 +1,11 @@
 package org.perscholas.database.entity;
 
+import java.util.List;
+
 import javax.persistence.*;
+import org.hibernate.annotations.Cascade;
+
+
 
 @Entity
 @Table(name = "customers")
@@ -10,8 +15,12 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
-
-	@Column(name = "customer_name")
+	
+	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+	private List<Order> orders;
+	
+    @Column(name="customer_name")
 	private String customerName;
 
 	@Column(name = "contact_lastname")
@@ -152,5 +161,14 @@ public class Customer {
 	public void setCreditLimit(double creditLimit) {
 		this.creditLimit = creditLimit;
 	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+	
 
 }
