@@ -42,17 +42,16 @@ public class ProductDAO {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 
-		// Example of HQL to get all records of user class
-		// SQL is : select * from customers c where c.contact_firstname = :firstname and
-		// c.contact_lastname = :lastname
-		String hql = "FROM Product p WHERE p.name = :name";
+		
+		String hql = "FROM Product p WHERE p.productName = :name";
 
 		TypedQuery<Product> query = session.createQuery(hql, Product.class);
-		query.setParameter("firstname", name);
+		query.setParameter("name", name);
 
 		List<Product> result = query.getResultList();
 		return result;
 	}
+	
 
 }
 

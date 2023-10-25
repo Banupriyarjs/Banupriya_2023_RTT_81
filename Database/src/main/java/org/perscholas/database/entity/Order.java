@@ -26,7 +26,7 @@ public class Order {
 	@Column(name = "id")
 	private Integer id;
 
-	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<OrderDetail> orderDetails;
 
 	// This variable becomes read only because we have set

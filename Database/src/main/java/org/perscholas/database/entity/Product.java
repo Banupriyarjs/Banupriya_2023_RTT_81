@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="products")
+@Table(name = "products")
 public class Product {
 
 	@Id
@@ -21,38 +21,38 @@ public class Product {
 	@Column(name = "id")
 	private Integer id;
 
-	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 
 	private List<OrderDetail> orderdetails;
-	
-	@Column(name="product_code")
+
+	@Column(name = "product_code")
 	private String productCode;
-	
-	
-	@Column(name="productline_id")
+
+	@Column(name = "product_name")
+	private String productName;
+
+	@Column(name = "productline_id")
 	private Integer productLineId;
-	
-	
-	@Column(name="product_scale")
+
+	@Column(name = "product_scale")
 	private String productScale;
-	
-	@Column(name="product_vendor")
+
+	@Column(name = "product_vendor")
 	private String productVendor;
-	
-	@Column(name="product_description",columnDefinition="Text")
+
+	@Column(name = "product_description", columnDefinition = "Text")
 	private String productDescription;
-	
-	@Column(name="quantity_in_stock" ,columnDefinition = "Smallint")
+
+	@Column(name = "quantity_in_stock", columnDefinition = "Smallint")
 	private Integer qualityInStock;
-	
-	@Column(name="buy_price",columnDefinition = "Decimal(10,2")
+
+	@Column(name = "buy_price", columnDefinition = "Decimal(10,2")
 	private Double buyPrice;
-   
-	@Column(name="msrp",columnDefinition = "Decimal(10,2")
+
+	@Column(name = "msrp", columnDefinition = "Decimal(10,2")
 	private Double msrp;
-	
-	//Getters and Setters
+
+	// Getters and Setters
 
 	public Integer getId() {
 		return id;
@@ -68,6 +68,14 @@ public class Product {
 
 	public void setProductCode(String productCode) {
 		this.productCode = productCode;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public Integer getProductLineId() {
@@ -125,7 +133,13 @@ public class Product {
 	public void setMsrp(Double msrp) {
 		this.msrp = msrp;
 	}
-	
-	
+
+	public List<OrderDetail> getOrderdetails() {
+		return orderdetails;
+	}
+
+	public void setOrderdetails(List<OrderDetail> orderdetails) {
+		this.orderdetails = orderdetails;
+	}
 
 }

@@ -21,7 +21,7 @@ public class HibernateOrderExample {
 		//if(orderDao.findByCustomerId(custId))
 		//{
 		Order o = new Order();
-		o.setCustomerId(145);
+	//	o.setCustomerId(145);
 		o.setComments("Shipping in progress");
 		o.setOrderDate(date);
 		o.setShippedDate(null);
@@ -53,7 +53,7 @@ public class HibernateOrderExample {
 		OrderDAO orderDAO = new OrderDAO();
 		List<Order> orders = orderDAO.findByCustomerId(custId);
 		for (Order o : orders) {
-			System.out.println(o.getId() + " | " + o.getCustomerId() + " | " + o.getOrderDate() + " | "
+			System.out.println(o.getId() + " | " + o.getOrderDate() + " | "
 					+ o.getRequiredDate() + " | " + o.getStatus() + " | " + o.getComments());
 		}
 
@@ -65,7 +65,7 @@ public class HibernateOrderExample {
 		// System.out.println("Customer Name : "+c.getCustomerName());
 		if (o != null) {
 			o.setStatus("Shipped");
-			o.setCustomerId(119);
+		//	o.setCustomerId(119);
 			o.setOrderDate(date);
 			orderDAO.save(o);
 		}
