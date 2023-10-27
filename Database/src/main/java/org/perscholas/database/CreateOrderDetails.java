@@ -99,8 +99,7 @@ public class CreateOrderDetails {
 		}
 		
 		
-	}
-	
+	}	
 	
 	public static void main(String[] args) {
 		CreateOrderDetails cod = new CreateOrderDetails();
