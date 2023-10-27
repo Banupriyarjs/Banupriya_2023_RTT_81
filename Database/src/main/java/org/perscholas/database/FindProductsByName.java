@@ -8,8 +8,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.perscholas.database.dao.OrderDAO;
+import org.perscholas.database.dao.OrderDetailDAO;
 import org.perscholas.database.dao.ProductDAO;
 import org.perscholas.database.entity.Order;
+import org.perscholas.database.entity.OrderDetail;
 import org.perscholas.database.entity.Product;
 
 
@@ -27,6 +29,7 @@ public class FindProductsByName {
 	public void findProductsByName() {
 		Product product = new Product();
 		OrderDAO orderDao = new OrderDAO();
+		OrderDetailDAO orderDetailDao= new OrderDetailDAO();
 
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
@@ -39,7 +42,7 @@ public class FindProductsByName {
 		TypedQuery<Product> query = session.createQuery(hql, Product.class);
 
 		query.setParameter("prodName", prodName);
-
+		//query.setParameter("prodName", "%"+prodName+"%");
 		List<Product> products = query.getResultList();
 		if (products.size() > 0) {
 
@@ -49,7 +52,7 @@ public class FindProductsByName {
 			System.out.println("Select a product Id:");
 			int productId = scanner.nextInt();
 
-			System.out.println("Please enter the order number to add up this product ID: " + productId);
+			System.out.println("Please enter the order number to add up this product ID : " + productId);
 			int orderId = scanner.nextInt();
 
 			Order o = orderDao.findById(orderId);
@@ -60,6 +63,16 @@ public class FindProductsByName {
 			} else {
 				System.out.println("The Order Number does not exist");
 			}
+			OrderDetail od= orderDetailDao.findByOrderIdAndProductId(productId,orderId);
+			if(od==null)
+			{
+				System.out.println("Product does not exist for this order");
+			}
+			else
+			{
+				System.out.println("The product already exist for this order");
+			}
+			
 
 		} else {
 			System.out.println("Product with name " + prodName + " does not exist");
