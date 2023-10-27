@@ -17,6 +17,7 @@ public class CreateOrderDetails {
 	public void createOrderDetails() {
 		// ask the user to enter a product name
 		Scanner scanner = new Scanner(System.in);
+		
 		System.out.println("Enter a product name to add to your order:");
 		String productName = scanner.nextLine();
 		
