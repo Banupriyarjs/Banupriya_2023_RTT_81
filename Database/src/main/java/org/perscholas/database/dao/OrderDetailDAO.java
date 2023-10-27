@@ -10,10 +10,11 @@ import org.perscholas.database.entity.Customer;
 import org.perscholas.database.entity.OrderDetail;
 
 public class OrderDetailDAO {
-	public OrderDetail findById(Integer orderId) {
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-		Session session = factory.openSession();
+	private SessionFactory factory = new Configuration().configure().buildSessionFactory();
+	private Session session = factory.openSession();
 
+	public OrderDetail findById(Integer orderId) {
+		
 		String hql = "FROM OrderDetail od WHERE od.id = :orderId"; // Example of HQL to get all records of user class
 
 		System.out.println(hql);
@@ -27,8 +28,8 @@ public class OrderDetailDAO {
 	}
 
 	public void save(OrderDetail orderDetail) {
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-		Session session = factory.openSession();
+		//SessionFactory factory = new Configuration().configure().buildSessionFactory();
+	//	Session session = factory.openSession();
 		// session.beginTransaction();
 		// session.save(save);
 
@@ -65,8 +66,8 @@ public class OrderDetailDAO {
 
 	}*/
 	public OrderDetail findByOrderIdAndProductId(Integer orderId, Integer productId) {
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-		Session session = factory.openSession();
+		//SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		//Session session = factory.openSession();
 
 		String hql = "FROM OrderDetail od WHERE od.order.id = :orderId and od.product.id = :productId"; // Example of HQL to get all records of user class
 

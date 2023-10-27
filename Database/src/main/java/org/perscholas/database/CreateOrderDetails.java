@@ -83,8 +83,12 @@ public class CreateOrderDetails {
 		if ( queryOd != null ) {
 			// here I would increment the quantity ordered
 			System.out.println("This product is already part of the order.");
-			System.exit(1);
-		} else {
+			System.out.println("How many additional would you like to order");
+			int quantiy=scanner.nextInt();
+			queryOd.setQuantityOrdered(queryOd.getQuantityOrdered()+quantiy);
+			orderDetailsDAO.save(queryOd);
+			//System.exit(1);
+		} else {  //comment this else part to see the SQL Exception happening for unique key created for orderid and productid.
 
 			OrderDetail od = new OrderDetail();
 			od.setProduct(p);
