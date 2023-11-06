@@ -50,7 +50,7 @@ public class CustomerDAO {
 		return result;
 	}
 
-	public void save(Customer save) {
+	public Customer  save(Customer save) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		//session.beginTransaction();
@@ -59,7 +59,15 @@ public class CustomerDAO {
 		Transaction t = session.beginTransaction();
 		session.saveOrUpdate(save);
 		t.commit();
+		return save;
 
 	}
 
+	public Customer updateFirstName(Integer id, String firstName) {
+		Customer save = findById(id);
+		
+		save.setContactFirstName(firstName);
+
+		return save(save);
+	}
 }
