@@ -1,0 +1,15 @@
+#box{
+    border:10px solid #000;
+    border-radius: 40px 40px 40px 40px;
+    width: 200px;
+    height: 100px;
+    background-color:#e54545;
+
+}
+#box1{
+    border: groove 1em red;  
+    border-radius: 2em;
+    width: 200px;
+    height: 100px;
+    background-color:#ccc;
+}
