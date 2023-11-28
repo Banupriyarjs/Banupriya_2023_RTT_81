@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+
 @Slf4j
 @Controller
 public class CustomerController {
@@ -20,10 +23,28 @@ public class CustomerController {
     @GetMapping("/customer/create")
     public ModelAndView createCustomer() {
         ModelAndView response = new ModelAndView("customer/create");
-        log.info("In create customer with no args ");
+        log.debug("In create customer with no args ");
         return response;
     }
+    @GetMapping("/customer/search")
+    public ModelAndView search(@RequestParam(required = false) String search) {
+        ModelAndView response = new ModelAndView("customer/search");
+        log.debug("In the customer search controller method:search parameter:"+search);
+        if(search!=null)
+        {
+            List<Customer> customers=customerDao.findFirstName(search);
+            response.addObject("customersVar",customers);
+            response.addObject("search",search);
+            for (Customer customer :customers)
 
+            {
+                log.debug("customer: id "+customer.getId()+" First Name "+customer.getFirstName()+" Last Name "+customer.getLastName());
+                log.debug("customer: Phone "+customer.getPhone()+" City "+customer.getCity());
+            }
+
+        }
+        return response;
+    }
     @GetMapping("/customer/createSubmit")
     public ModelAndView createCustomerSubmit(CreateCustomerFormBean form) {
         ModelAndView response = new ModelAndView("customer/create");
@@ -39,7 +60,7 @@ public class CustomerController {
         customer.setPhone(form.getPhone());
         customer.setCity(form.getCity());
          customerDao.save(customer);
-        log.info("In create customer with incoming args ");
+        log.debug("In create customer with incoming args ");
         return response;
     }
 //public ModelAndView createCustomer()
