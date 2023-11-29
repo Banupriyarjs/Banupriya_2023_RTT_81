@@ -11,7 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-
+// add a label to the existing form input for first name
+// add a 2nd form input for last name
+// change the controller to accept the new form input for last name as well as first name
+// change the query to search by first name OR last name
+// change the query to use like for both first name and last name
+// make both search fields populate the user input if it was given
 @Slf4j
 @Controller
 public class CustomerController {
