@@ -31,15 +31,37 @@ public class CustomerController {
         log.debug("In create customer with no args ");
         return response;
     }
+    //Model to find the customers by first name
     @GetMapping("/customer/search")
-    public ModelAndView search(@RequestParam(required = false) String search) {
+    public ModelAndView search(@RequestParam(required = false) String firstname) {
         ModelAndView response = new ModelAndView("customer/search");
-        log.debug("In the customer search controller method:search parameter:"+search);
-        if(search!=null)
+        log.debug("In the customer search controller method:search parameter:"+firstname);
+        if(firstname!=null)
         {
-            List<Customer> customers=customerDao.findFirstName(search);
+            List<Customer> customers=customerDao.findFirstName(firstname);
             response.addObject("customersVar",customers);
-            response.addObject("search",search);
+            response.addObject("search",firstname);
+            for (Customer customer :customers)
+
+            {
+                log.debug("customer: id "+customer.getId()+" First Name "+customer.getFirstName()+" Last Name "+customer.getLastName());
+                log.debug("customer: Phone "+customer.getPhone()+" City "+customer.getCity());
+            }
+
+        }
+        return response;
+    }
+    //Model to find the customers using the first name and the last name
+    @GetMapping("/customer/searchbyname")
+    public ModelAndView searchByFnameAndLame(@RequestParam(required = false) String firstname,@RequestParam(required = false) String lastname) {
+        ModelAndView response = new ModelAndView("customer/search");
+        log.debug("In the customer search controller method:search parameter:"+firstname+" "+lastname);
+        if(firstname!=null || lastname!=null)
+        {
+            List<Customer> customers=customerDao.findByFnameAndLnameStartsWith(firstname+"%",lastname+"%");
+            response.addObject("customersByName",customers);
+            response.addObject("firstname",firstname);
+            response.addObject("lastname",lastname);
             for (Customer customer :customers)
 
             {

@@ -12,4 +12,8 @@ public interface CustomerDAO extends JpaRepository<Customer, Long> {
 public Customer findById(int id);
 @Query("select c from Customer c WHERE c.firstName=:firstName")
 List<Customer> findFirstName(String firstName);
+
+//@Query("select c from Customer c WHERE c.firstName = :firstName OR c.lastName =:lastName")
+@Query("select c from Customer c WHERE c.firstName LIKE :firstName AND c.lastName LIKE:lastName")
+List<Customer> findByFnameAndLnameStartsWith(String firstName,String lastName);
 }

@@ -6,13 +6,16 @@
   <div class="container pt-5">
 
     <h1 class="pb-3"> Customer Search</h1>
-    <form action="/customer/search">
-         <input type="text" name="search" placeholder="Search by name" value="${search}">
-           <button type="submit" class="btn-primary">Submit</button>
+    <form action="/customer/searchbyname">
+      <label for="First Name">First Name</label>
+         <input type="text" name="firstname" placeholder="Search by first Name" value="${firstname}">
+          <label for="Last Name">Last Name</label>
+                  <input type="text" name="lastname" placeholder="Search by last Name" value="${lastname}">
+          <input class="btn btn-primary" type="submit" value="Submit">
     </form>
 
-        <c:if test="${not empty customersVar}">
-            <h1>Customers Found ${customersVar.size()}</h1>
+        <c:if test="${not empty customersByName}">
+            <h1>Customers Found ${customersByName.size()}</h1>
 
             <table class="table">
                 <tr>
@@ -22,7 +25,7 @@
                     <td>Phone</td>
                     <td>City</td>
                 </tr>
-                <c:forEach items="${customersVar}" var="customer">
+                <c:forEach items="${customersByName}" var="customer">
                     <tr>
                         <td>${customer.id}</td>
                         <td>${customer.firstName}</td>
