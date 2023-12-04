@@ -2,14 +2,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../include/header.jsp"/>
 <section>
+    <div class="bg-light2 pt-5 pb-5">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="m-0">Search Customer</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+<section class="pt-5 pb-5">
+  <div class="container align="center>
 
-  <div class="container pt-5">
 
-    <h1 class="pb-3"> Customer Search</h1>
     <form action="/customer/searchbyname">
       <label for="First Name">First Name</label>
          <input type="text" name="firstname" placeholder="Search by first Name" value="${firstname}">
-          <label for="Last Name">Last Name</label>
+          <label for="Last Name" class="pt-5 pb-5">Last Name</label>
                   <input type="text" name="lastname" placeholder="Search by last Name" value="${lastname}">
           <input class="btn btn-primary" type="submit" value="Submit">
     </form>
@@ -17,13 +26,13 @@
         <c:if test="${not empty customersByName}">
             <h1>Customers Found ${customersByName.size()}</h1>
 
-            <table class="table">
+            <table class="table" border="1">
                 <tr>
                     <td>Id</td>
                     <td>First Name</td>
                     <td>Last Name</td>
                     <td>Phone</td>
-                    <td>City</td>
+                    <td colspan="2">City</td>
                 </tr>
                 <c:forEach items="${customersByName}" var="customer">
                     <tr>
@@ -32,6 +41,7 @@
                         <td>${customer.lastName}</td>
                         <td>${customer.phone}</td>
                         <td>${customer.city}</td>
+                           <td><a href="/customer/edit/${customer.id}">Edit</a></td>
                     </tr>
                 </c:forEach>
             </table>

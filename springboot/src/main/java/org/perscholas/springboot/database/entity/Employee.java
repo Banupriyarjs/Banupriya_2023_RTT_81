@@ -21,7 +21,7 @@ public class Employee {
     private String lastName;
 
     @Column(name="department_name")
-    private String departmentName;
+    private String department;
 
 
 

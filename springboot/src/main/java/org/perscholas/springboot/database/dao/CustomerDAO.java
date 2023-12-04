@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository //optional
 public interface CustomerDAO extends JpaRepository<Customer, Long> {
-public Customer findById(int id);
+public Customer findById(Integer id);
 @Query("select c from Customer c WHERE c.firstName=:firstName")
 List<Customer> findFirstName(String firstName);
 
