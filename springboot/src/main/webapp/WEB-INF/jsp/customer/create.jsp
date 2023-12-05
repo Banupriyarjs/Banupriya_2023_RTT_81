@@ -21,7 +21,7 @@
                 </div>
             </div>
         </c:if>
-
+</section>
 <section class="pt-5 pb-5">
     <div class="container">
      <!-- the action attribute on the form tag is the URL that the form will submit to when then user clicks the submit button -->

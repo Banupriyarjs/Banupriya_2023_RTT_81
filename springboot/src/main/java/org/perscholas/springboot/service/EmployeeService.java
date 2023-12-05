@@ -15,14 +15,14 @@ import org.springframework.stereotype.Service;
 public class EmployeeService {
     @Autowired
     private EmployeeDAO employeeDAO;
-    public void createCustomer(CreateEmployeeFormBean form)
+    public Employee createEmployee(CreateEmployeeFormBean form)
     {
         log.debug("id:"+form.getId());
         log.debug("firstname:"+form.getFirstName());
         log.debug("lastname:"+form.getLastName());
         log.debug("department:"+form.getDepartmentName());
 
-   Employee employee = employeeDAO.findById(form.getId());
+       Employee employee = employeeDAO.findById(form.getId());
 
          if(employee==null)
         {
@@ -34,7 +34,7 @@ public class EmployeeService {
         employee.setFirstName(form.getFirstName());
         employee.setLastName(form.getLastName());
         employee.setDepartment(form.getDepartmentName());
-        employeeDAO.save(employee);
+        return employeeDAO.save(employee);
     }
 
 
