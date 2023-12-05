@@ -1,5 +1,7 @@
 package org.perscholas.springboot.controller;
 
+import io.micrometer.common.util.StringUtils;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.perscholas.springboot.database.dao.CustomerDAO;
 import org.perscholas.springboot.database.entity.Customer;
@@ -7,6 +9,8 @@ import org.perscholas.springboot.formbean.CreateCustomerFormBean;
 import org.perscholas.springboot.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -89,20 +93,50 @@ public class CustomerController {
         return response;
     }
     @GetMapping("/customer/createSubmit")
-    public ModelAndView createCustomerSubmit(CreateCustomerFormBean form) {
-        ModelAndView response = new ModelAndView("customer/create");
+    public ModelAndView createCustomerSubmit(@Valid CreateCustomerFormBean form, BindingResult bindingResult) {
+    /*ModelAndView response = new ModelAndView("customer/create");
        // ModelAndView response = new ModelAndView("redirect:/customer/search");
 
         customerService.createCustomer(form);
         log.debug("In create customer with incoming args ");
+        return response;*/
+        if (bindingResult.hasErrors()) {
+            log.info("######################### In create customer submit - has errors #########################");
+            ModelAndView response = new ModelAndView("customer/create");
+
+            for (ObjectError error : bindingResult.getAllErrors()) {
+                log.info("error: " + error.getDefaultMessage());
+            }
+
+            response.addObject("form", form);
+            response.addObject("errors", bindingResult);
+            return response;
+        }
+
+        log.info("######################### In create customer submit - no error found #########################");
+
+        Customer c = customerService.createCustomer(form);
+
+        // the view name can either be a jsp file name or a redirect to another controller method
+        ModelAndView response = new ModelAndView();
+        response.setViewName("redirect:/customer/edit/" + c.getId() + "?success=Customer Saved Successfully");
+
         return response;
     }
+
     @GetMapping("/customer/edit/{id}")
-    public ModelAndView editCustomer(@PathVariable int id)
+   // public ModelAndView editCustomer(@PathVariable int id)
+   //Added to display success message
+    public ModelAndView editCustomer(@PathVariable int id, @RequestParam(required = false) String success)
     {
+        log.info("######################### In /customer/edit #########################");
+
         ModelAndView response = new ModelAndView("customer/create");
         Customer customer=customerDao.findById(id);
-
+        //Added to display success message
+        if (!StringUtils.isEmpty(success)) {
+            response.addObject("success", success);
+        }
         CreateCustomerFormBean form= new CreateCustomerFormBean();
         if(customer !=null)
         {

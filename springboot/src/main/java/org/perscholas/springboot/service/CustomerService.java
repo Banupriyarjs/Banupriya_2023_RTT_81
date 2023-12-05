@@ -12,7 +12,8 @@ import org.springframework.stereotype.Service;
 public class CustomerService {
     @Autowired
     CustomerDAO customerDAO;
-   public void createCustomer(CreateCustomerFormBean form)
+   //public void createCustomer(CreateCustomerFormBean form)
+   public Customer createCustomer(CreateCustomerFormBean form)
    {
        log.debug("id:"+form.getId());
        log.debug("firstname:"+form.getFirstName());
@@ -36,7 +37,8 @@ public class CustomerService {
        customer.setLastName(form.getLastName());
        customer.setPhone(form.getPhone());
        customer.setCity(form.getCity());
-       customerDAO.save(customer);
+       //customerDAO.save(customer);
+       return customerDAO.save(customer);
    }
 
 }
