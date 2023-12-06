@@ -7,12 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class SlashController {
-   /* public void index() {
-        User user = new User();
-        user.setId(1);
-        user.setUserName("");
-    }*/
-    @GetMapping("/")
+   @GetMapping("/")
     public ModelAndView index() {
         ModelAndView response = new ModelAndView("index");
         return response;
