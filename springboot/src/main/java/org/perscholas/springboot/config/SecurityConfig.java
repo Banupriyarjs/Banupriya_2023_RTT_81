@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -33,22 +35,23 @@ public class SecurityConfig {
         // this is telling us the URL for the login page and the URL to submit the login form
         http.formLogin(formLogin -> formLogin
                 // this is the URL for the login page
-                .loginPage("/login/login")
+                .loginPage("/auth/login")
                 // this is the URL to submit the login form
-                .loginProcessingUrl("/login/loginSubmit"));
+                .loginProcessingUrl("/auth/loginSubmit"));
 
         // this is telling spring security to logout when we hit the /login/logout URL
         http.logout(formLogout -> formLogout
                 .invalidateHttpSession(true)
                 // this is the URL to submit the logout form
-                .logoutUrl("/login/logout")
+                .logoutUrl("/auth/logout")
                 // this is the URL to go to after logout
                 .logoutSuccessUrl("/"));
 
         return http.build();
-
-
-
+    }
+    @Bean(name = "passwordEncoder")
+    public PasswordEncoder getPasswordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 }
