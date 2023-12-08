@@ -145,6 +145,7 @@ public class CustomerController {
             form.setLastName(customer.getLastName());
             form.setPhone(customer.getPhone());
             form.setCity(customer.getCity());
+            form.setImageUrl(customer.getImageUrl());
 
         }
         else
