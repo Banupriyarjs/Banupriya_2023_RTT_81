@@ -31,7 +31,7 @@ public class EmployeeController {
 private EmployeeService employeeService;
     @GetMapping("/employee/create")
     public ModelAndView createEmployee() {
-        ModelAndView response = new ModelAndView("/employee/create");
+        ModelAndView response = new ModelAndView("employee/create");
         return response;
     }
 @GetMapping("/employee/createSubmit")
