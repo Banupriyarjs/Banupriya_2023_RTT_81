@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Spring Boot Application </title>
+    <title>Bootstrap demo</title>
 
     <link href="/pub/css/global-style.css" rel="stylesheet">
 
@@ -33,30 +33,30 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/employee/create">Create Employee</a>
                 </li>
-                 <li class="nav-item">
-                     <a class="nav-link" href="/employee/search">Search Employee</a>
-                 </li>
-                  <sec:authorize access="!isAuthenticated()">
-                  <li class="nav-item">
-                             <a class="nav-link" href="/auth/register">User Registration</a>
-                   </li>
-                   <li class="nav-item">
-                          <a class="nav-link" href="/auth/login">Login</a>
+                <sec:authorize access="!isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/register">User Registration</a>
                     </li>
-                   </sec:authorize>
-                   <sec:authorize access="hasAnyAuthority('ADMIN')">
-                                       <li class="nav-item">
-                                           <a class="nav-link" href="">Admin</a>
-                                       </li>
-                   </sec:authorize>
-                   <sec:authorize access="isAuthenticated()">
-                   <li class="nav-item">
-                      <a class="nav-link" href="/auth/logout">Logout</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href=""><sec:authentication property="principal.username" /></a>
-                   </li>
-                  </sec:authorize>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/login">Login</a>
+                    </li>
+                </sec:authorize>
+                <sec:authorize access="hasAnyAuthority('ADMIN')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/index">Admin</a>
+                    </li>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/logout">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=""><sec:authentication property="principal.username" /></a>
+                    </li>
+                </sec:authorize>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/index">Secured Request</a>
+                </li>
             </ul>
         </div>
     </div>

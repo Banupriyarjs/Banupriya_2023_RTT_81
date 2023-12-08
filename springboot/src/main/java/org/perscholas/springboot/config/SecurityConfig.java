@@ -15,9 +15,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Slf4j
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
-@EnableMethodSecurity(prePostEnabled = true,securedEnabled = true)
+@EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class SecurityConfig {
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -25,7 +25,6 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable());
 
         // this block of code determines which requests are authenticated
-
         http.authorizeRequests()
                 .requestMatchers(
                         new AntPathRequestMatcher("/admin/**"),
@@ -49,18 +48,12 @@ public class SecurityConfig {
 
         return http.build();
     }
+
+
     @Bean(name = "passwordEncoder")
     public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+
 }
-
-
-
-
-
-
-
-
-
