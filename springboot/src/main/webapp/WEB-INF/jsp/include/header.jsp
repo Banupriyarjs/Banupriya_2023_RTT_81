@@ -39,6 +39,11 @@
                   <li class="nav-item">
                                       <a class="nav-link" href="/auth/register">User Registration</a>
                    </li>
+                   <sec:authorize access="hasAnyAuthority('ADMIN')">
+                                       <li class="nav-item">
+                                           <a class="nav-link" href="">Admin</a>
+                                       </li>
+                   </sec:authorize>
             </ul>
         </div>
     </div>
