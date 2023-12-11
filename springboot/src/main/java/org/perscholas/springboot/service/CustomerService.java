@@ -3,7 +3,9 @@ package org.perscholas.springboot.service;
 import lombok.extern.slf4j.Slf4j;
 import org.perscholas.springboot.database.dao.CustomerDAO;
 import org.perscholas.springboot.database.entity.Customer;
+import org.perscholas.springboot.database.entity.User;
 import org.perscholas.springboot.formbean.CreateCustomerFormBean;
+import org.perscholas.springboot.security.AuthenticatedUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Service;
 public class CustomerService {
     @Autowired
     CustomerDAO customerDAO;
+    @Autowired
+    private AuthenticatedUserService authenticatedUserService;
    //public void createCustomer(CreateCustomerFormBean form)
    public Customer createCustomer(CreateCustomerFormBean form)
    {
@@ -30,6 +34,11 @@ public class CustomerService {
        if(customer==null)
        {
            customer=new Customer();
+          //these line of code loads the current logged in user record from the database
+           User user=authenticatedUserService.loadCurrentUser();
+           //then we can set user id onto customer record we are about to create
+           //I am doing here because I only want to update the userid on the customer when it is being created.
+           customer.setUserID(user.getId());
        }
 
        // set the incoming values to be save to the database

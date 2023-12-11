@@ -29,7 +29,11 @@ public class SecurityConfig {
         // this block of code determines which requests are authenticated
         http.authorizeRequests()
                 .requestMatchers(
+                        //this will make all requests to /customer/** require authentication
+                        //we will now have to authenticate to user our customer search or customer create pages
+                        new AntPathRequestMatcher("/customer/**"),
                         new AntPathRequestMatcher("/admin/**"),
+                        //new AntPathRequestMatcher("/order/**"),
                         new AntPathRequestMatcher("/user/**")).authenticated()
                 .anyRequest().permitAll();
 
