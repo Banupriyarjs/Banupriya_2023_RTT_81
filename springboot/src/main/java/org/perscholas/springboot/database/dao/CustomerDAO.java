@@ -16,4 +16,10 @@ List<Customer> findFirstName(String firstName);
 //@Query("select c from Customer c WHERE c.firstName = :firstName OR c.lastName =:lastName")
 @Query("select c from Customer c WHERE c.firstName LIKE :firstName AND c.lastName LIKE:lastName")
 List<Customer> findByFnameAndLnameStartsWith(String firstName,String lastName);
+
+//Create a DAO method that will find by userID
+
+@Query("SELECT c FROM Customer c WHERE c.userId = :userId")
+List<Customer> findByUserId(Integer userId);
+
 }

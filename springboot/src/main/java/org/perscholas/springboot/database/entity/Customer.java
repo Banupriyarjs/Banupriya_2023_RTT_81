@@ -30,5 +30,5 @@ public class Customer {
     private String imageUrl;
 
     @Column(name="user_id")
-    private Integer userID;
+    private Integer userId;
 }

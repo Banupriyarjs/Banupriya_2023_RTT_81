@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
+import java.util.Date;
+
 @Getter
 @Setter
 public class RegisterUserFormBean {
@@ -24,4 +26,6 @@ public class RegisterUserFormBean {
 
     @NotEmpty(message = "Confirm Password cannot be empty")
     private String confirmPassword;
+
+    private Date createdDate;
 }
