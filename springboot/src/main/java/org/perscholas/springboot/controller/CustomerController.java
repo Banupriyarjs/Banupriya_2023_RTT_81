@@ -13,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -176,6 +174,33 @@ public class CustomerController {
        }
 
     }
+    @RequestMapping("/customer/detail")
+    public ModelAndView detail(@RequestParam Integer id) {
+        ModelAndView response = new ModelAndView("customer/detail");
+
+        Customer customer = customerDao.findById(id);
+
+        if ( customer == null ) {
+            log.warn("Customer with id " + id + " was not found");
+            // in a real application you might redirect to a 404 here because the custoemr was nto found
+            response.setViewName("redirect:/error/404");
+            return response;
+        }
+
+        response.addObject("customer", customer);
+
+        return response;
+    }
+
+
+    @GetMapping("/customer/fileupload")
+    public ModelAndView fileUpload() {
+        ModelAndView response = new ModelAndView("customer/fileupload");
+
+        log.info(" In fileupload with no Args");
+        return response;
+    }
+
 
 //    @GetMapping("/customer/delete/{customerId}")
 //    public ModelAndView deleteCustomer(@PathVariable int customerId) {
