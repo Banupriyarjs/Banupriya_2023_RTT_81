@@ -199,14 +199,16 @@ public class CustomerController {
 
 
     @GetMapping("/customer/fileupload")
-    public ModelAndView fileUpload() {
+    public ModelAndView fileUpload(@RequestParam Integer id) {
         ModelAndView response = new ModelAndView("customer/fileupload");
-
-        log.info(" In fileupload with no Args");
+         Customer customer =customerDao.findById(id);
+        response.addObject("customer", customer);
+        log.info(" In fileupload");
         return response;
     }
     @PostMapping("/customer/fileUploadSubmit")
-    public ModelAndView fileUploadSubmit(@RequestParam("file") MultipartFile file) {
+    public ModelAndView fileUploadSubmit(@RequestParam("file") MultipartFile file,
+                                         @RequestParam Integer id) {
         ModelAndView response = new ModelAndView("customer/fileupload");
 
         log.info("Filename = " + file.getOriginalFilename());
@@ -223,7 +225,11 @@ public class CustomerController {
 
             e.printStackTrace();
         }
-
+        //these 3 lines of code will load the customer by the id passed in
+        //update the image url field and then save the customer to the database
+       Customer customer =customerDao.findById(id);
+        customer.setImageUrl("/pub/images/"+file.getOriginalFilename());
+        customerDao.save(customer);
         return response;
     }
 
