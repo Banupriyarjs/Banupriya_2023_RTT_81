@@ -3,6 +3,7 @@ package org.perscholas.springboot.controller;
 import io.micrometer.common.util.StringUtils;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.perscholas.springboot.database.dao.CustomerDAO;
 import org.perscholas.springboot.database.entity.Customer;
 import org.perscholas.springboot.database.entity.User;
@@ -14,8 +15,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.List;
 // add a label to the existing form input for first name
 // add a 2nd form input for last name
@@ -200,7 +205,27 @@ public class CustomerController {
         log.info(" In fileupload with no Args");
         return response;
     }
+    @PostMapping("/customer/fileUploadSubmit")
+    public ModelAndView fileUploadSubmit(@RequestParam("file") MultipartFile file) {
+        ModelAndView response = new ModelAndView("customer/fileupload");
 
+        log.info("Filename = " + file.getOriginalFilename());
+        log.info("Size     = " + file.getSize());
+        log.info("Type     = " + file.getContentType());
+
+
+        // Get the file and save it somewhere
+        File f = new File("./src/main/webapp/pub/images/" + file.getOriginalFilename());
+        try (OutputStream outputStream = new FileOutputStream(f.getAbsolutePath())) {
+            IOUtils.copy(file.getInputStream(), outputStream);
+        } catch (Exception e) {
+
+
+            e.printStackTrace();
+        }
+
+        return response;
+    }
 
 //    @GetMapping("/customer/delete/{customerId}")
 //    public ModelAndView deleteCustomer(@PathVariable int customerId) {
