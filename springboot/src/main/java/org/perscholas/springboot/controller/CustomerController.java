@@ -174,7 +174,7 @@ public class CustomerController {
         List<Customer> customers=customerDao.findByUserId(user.getId());
         // 4) loop over the customers created and log.debug the customer id and customer last name
        for(Customer customer:customers) {
-           log.debug("customer: id: " + customer.getId() + "User ID: " + customer.getUserId());
+          // log.debug("customer: id: " + customer.getId() + "User ID: " + customer.getUserId());
            System.out.println(customer.getId()+"ID");
        }
 

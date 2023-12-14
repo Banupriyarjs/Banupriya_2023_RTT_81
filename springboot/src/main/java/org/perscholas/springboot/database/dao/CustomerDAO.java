@@ -19,7 +19,11 @@ List<Customer> findByFnameAndLnameStartsWith(String firstName,String lastName);
 
 //Create a DAO method that will find by userID
 
-@Query("SELECT c FROM Customer c WHERE c.userId = :userId")
+/* @Query("SELECT c FROM Customer c WHERE c.userId = :userId")
+List<Customer> findByUserId(Integer userId);*/
+
+//To enable Hibernate one to many relationship.
+@Query("SELECT c FROM Customer c WHERE c.user.id=:userId")
 List<Customer> findByUserId(Integer userId);
 
 }

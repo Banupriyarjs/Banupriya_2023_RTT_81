@@ -49,10 +49,10 @@
                         <td>${customer.city}</td>
                    <td><img src="${customer.imageUrl}" style="max-width:100px"></td>
 
-
+                        <!-- Path Variable -->
                            <td><a href="/customer/edit/${customer.id}">Edit</a></td>
                       <td><a href="/customer/customerdetail/${customer.id}">Customer Detail</a></td>
-
+                         <!-- Request Params -->
                       <td><a href="/customer/detail?id=${customer.id}">Detail</a></td>
                       <td><a href="/customer/fileupload?id=${customer.id}">Upload</a></td>
 

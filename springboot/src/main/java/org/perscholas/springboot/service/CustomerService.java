@@ -38,7 +38,9 @@ public class CustomerService {
            User user=authenticatedUserService.loadCurrentUser();
            //then we can set user id onto customer record we are about to create
            //I am doing here because I only want to update the userid on the customer when it is being created.
-           customer.setUserId(user.getId());
+           //customer.setUserId(user.getId());
+         //Added to implement hibernate one to many relationship
+          customer.setUser(user);
        }
 
        // set the incoming values to be save to the database
