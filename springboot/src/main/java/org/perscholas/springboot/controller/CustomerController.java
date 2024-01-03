@@ -84,12 +84,15 @@ public class CustomerController {
     public ModelAndView searchByFnameAndLame(@RequestParam(required = false) String firstname,@RequestParam(required = false) String lastname) {
         ModelAndView response = new ModelAndView("customer/search");
         log.debug("In the customer search controller method:search parameter:"+firstname+" "+lastname);
-        if(firstname!=null || lastname!=null)
+       /* if(firstname!=null || lastname!=null)
         {
-            List<Customer> customers=customerDao.findByFnameAndLnameStartsWith(firstname+"%",lastname+"%");
+            List<Customer> customers=customerDao.findByFirstNameOrLastName(firstname+"%",lastname+"%");
             response.addObject("customersByName",customers);
             response.addObject("firstname",firstname);
             response.addObject("lastname",lastname);
+
+
+
             for (Customer customer :customers)
 
             {
@@ -97,7 +100,31 @@ public class CustomerController {
                 log.debug("customer: Phone "+customer.getPhone()+" City "+customer.getCity());
             }
 
+        }*/
+        if (!StringUtils.isEmpty(firstname) || !StringUtils.isEmpty(lastname)) {
+
+            response.addObject("firstNameSearch", firstname);
+            response.addObject("lastNameSearch", lastname);
+
+            if (!StringUtils.isEmpty(firstname)) {
+                firstname = "%" + firstname + "%";
+            }
+
+            if (!StringUtils.isEmpty(lastname)) {
+                lastname = "%" + lastname + "%";
+            }
+
+            // we only want to do this code if the user has entered either a first name or a last name
+            List<Customer> customers = customerDao.findByFirstNameOrLastName(firstname, lastname);
+
+            response.addObject("customerVar", customers);
+
+
+            for (Customer customer : customers) {
+                log.debug("customer: id = " + customer.getId() + " last name = " + customer.getLastName());
+            }
         }
+
         return response;
     }
     @GetMapping("/customer/createSubmit")
